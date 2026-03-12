@@ -455,145 +455,204 @@
     .sep{height:1px; background:var(--line); margin:12px 0}
 
     /* Card visual */
-    .cardPhoto{
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.20);
-      box-shadow:0 24px 48px rgba(2,6,23,.24);
-      background:
-        linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #0b1220 100%);
+    .vcard-wrap{margin-top:10px; display:flex; justify-content:center}
+    .vcard{
+      width:100%;
+      max-width:360px;
+      aspect-ratio:1.586;
+      border-radius:24px;
       position:relative;
-      min-height:196px;
+      overflow:hidden;
+      padding:18px 20px;
+      color:#d9d9d9;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0)),
+        linear-gradient(120deg, #14110f 0%, #2e1f17 35%, #1a1512 65%, #0e0d0c 100%);
+      box-shadow:
+        0 18px 45px rgba(0,0,0,.55),
+        inset 0 1px 1px rgba(255,255,255,.08);
     }
-    .cardPhoto::before{
+    .vcard.vcard-large{max-width:430px; padding:24px 26px}
+    .vcard.vcard-dashboard{max-width:100%; padding:14px 14px; border-radius:18px}
+    .vcard::before{
       content:"";
       position:absolute;
-      inset:-35% -30% auto auto;
-      width:220px;
-      height:220px;
-      border-radius:999px;
-      background:radial-gradient(circle at center, rgba(255,255,255,.30), transparent 65%);
-      transform:rotate(-12deg);
-      pointer-events:none;
+      width:420px;
+      height:420px;
+      border:18px solid rgba(255,255,255,.05);
+      border-radius:50%;
+      left:70px;
+      bottom:-210px;
+      transform:rotate(15deg);
     }
-    .cardPhoto::after{
+    .vcard::after{
       content:"";
       position:absolute;
-      left:-30%;
-      top:54%;
-      width:180%;
-      height:1px;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,.24), transparent);
-      pointer-events:none;
+      width:300px;
+      height:300px;
+      border:10px solid rgba(255,255,255,.03);
+      border-radius:50%;
+      left:120px;
+      bottom:-145px;
+      transform:rotate(-10deg);
     }
-    .cardPhoto .inner{
-      position:absolute; inset:0;
-      padding:16px;
+    .vcard-brand{
+      font-size:22px;
+      font-weight:900;
+      letter-spacing:.8px;
+      color:rgba(255,255,255,.88);
+      line-height:1;
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+    .vcard.vcard-large .vcard-brand{font-size:30px}
+    .vcard.vcard-dashboard .vcard-brand{font-size:17px; letter-spacing:.5px}
+    .vcard.vcard-dashboard .vcard-top{margin-top:8px}
+    .vcard.vcard-dashboard .vcard-chip{width:50px; height:36px; border-radius:8px}
+    .vcard.vcard-dashboard .vcard-contactless{width:30px; height:22px; margin-right:2px}
+    .vcard.vcard-dashboard .vcard-contactless span{border-width:3px}
+    .vcard.vcard-dashboard .vcard-contactless span:nth-child(1){width:8px; height:8px; top:8px}
+    .vcard.vcard-dashboard .vcard-contactless span:nth-child(2){width:14px; height:14px; right:5px; top:5px}
+    .vcard.vcard-dashboard .vcard-contactless span:nth-child(3){width:20px; height:20px; right:10px; top:2px}
+    .vcard-top{
+      margin-top:12px;
       display:flex;
-      flex-direction:column;
       justify-content:space-between;
+      align-items:center;
+      position:relative;
+      z-index:2;
+    }
+    .vcard-chip{
+      width:68px;
+      height:50px;
+      border-radius:10px;
+      background:linear-gradient(135deg, #c8a96b, #8e6e32);
+      position:relative;
+      box-shadow:inset 0 1px 3px rgba(255,255,255,.25);
+    }
+    .vcard-chip::before,
+    .vcard-chip::after{
+      content:"";
+      position:absolute;
+      background:rgba(92,67,20,.35);
+    }
+    .vcard-chip::before{width:100%; height:2px; top:50%; left:0; transform:translateY(-50%)}
+    .vcard-chip::after{width:2px; height:100%; top:0; left:50%; transform:translateX(-50%)}
+    .vcard-contactless{position:relative; width:42px; height:32px; margin-right:8px}
+    .vcard-contactless span{
+      position:absolute;
+      border:4px solid rgba(255,255,255,.75);
+      border-left:none;
+      border-bottom:none;
+      border-top-right-radius:20px;
+      border-bottom-right-radius:20px;
+      transform:rotate(45deg);
+    }
+    .vcard-contactless span:nth-child(1){width:10px; height:10px; right:0; top:10px}
+    .vcard-contactless span:nth-child(2){width:18px; height:18px; right:6px; top:6px}
+    .vcard-contactless span:nth-child(3){width:26px; height:26px; right:12px; top:2px}
+    .vcard-number{
+      margin-top:16px;
+      font-size:16px;
+      letter-spacing:1.4px;
+      font-weight:500;
+      color:rgba(230,230,230,.82);
+      text-shadow:0 2px 6px rgba(0,0,0,.6);
+      font-family:"Courier New", monospace;
+      position:relative;
+      z-index:2;
+      white-space:nowrap;
+      text-align:center;
+      opacity:.95;
+    }
+    .vcard.vcard-large .vcard-number{margin-top:20px; font-size:19px; letter-spacing:2px}
+    .vcard.vcard-dashboard .vcard-number{margin-top:8px; font-size:12px; letter-spacing:.7px}
+    .vcard-bottom{
+      position:absolute;
+      left:22px;
+      right:22px;
+      bottom:12px;
+      height:66px;
+      z-index:3;
+    }
+    .vcard.vcard-large .vcard-bottom{left:26px; right:26px; bottom:14px; height:72px}
+    .vcard.vcard-dashboard .vcard-bottom{left:12px; right:12px; bottom:8px; height:52px}
+    .vcard-holder{
+      position:absolute;
+      left:0;
+      bottom:0;
+      font-size:12px;
+      letter-spacing:1.1px;
+      text-transform:uppercase;
+      color:rgba(248,248,248,.98);
+      text-shadow:0 2px 7px rgba(0,0,0,.75), 0 0 1px rgba(255,255,255,.55);
+      font-family:"Courier New", monospace;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      font-weight:700;
+      max-width:68%;
+    }
+    .vcard.vcard-large .vcard-holder{font-size:13px; letter-spacing:1.2px}
+    .vcard.vcard-dashboard .vcard-holder{font-size:9px; letter-spacing:.55px; max-width:56%}
+    .vcard-date-cvv{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:28px;
+      display:flex;
+      align-items:flex-end;
+      gap:14px;
+      color:rgba(255,255,255,.92);
+      font-family:"Courier New", monospace;
+      flex-shrink:0;
+      text-align:center;
+    }
+    .vcard.vcard-large .vcard-date-cvv{bottom:30px}
+    .vcard.vcard-dashboard .vcard-date-cvv{bottom:20px; gap:8px}
+    .vcard-date-cvv small{
+      display:block;
+      font-size:9px;
+      color:rgba(255,255,255,.8);
+      letter-spacing:.9px;
+      margin-bottom:2px;
+      text-transform:uppercase;
+      font-weight:700;
+    }
+    .vcard-date-cvv b{font-size:12px; letter-spacing:1.1px; color:#fff}
+    .vcard.vcard-large .vcard-date-cvv b{font-size:13px}
+    .vcard.vcard-dashboard .vcard-date-cvv small{font-size:8px; letter-spacing:.6px}
+    .vcard.vcard-dashboard .vcard-date-cvv b{font-size:9px; letter-spacing:.7px}
+    .vcard-network{position:absolute; right:20px; bottom:10px; width:82px; height:44px; z-index:2}
+    .vcard.vcard-large .vcard-network{right:24px; bottom:12px; width:88px; height:48px}
+    .vcard.vcard-dashboard .vcard-network{right:10px; bottom:6px; width:58px; height:30px}
+    .vcard.vcard-dashboard .vcard-circle-left,
+    .vcard.vcard-dashboard .vcard-circle-right{width:30px; height:30px; top:0}
+    .vcard.vcard-dashboard .vcard-network-text{font-size:9px}
+    .vcard-circle-left,
+    .vcard-circle-right{position:absolute; width:44px; height:44px; border-radius:50%; top:2px}
+    .vcard-circle-left{left:0; background:#0d8bc0; opacity:.95}
+    .vcard-circle-right{right:0; background:#c3172c; opacity:.95}
+    .vcard-network-text{
+      position:absolute;
+      inset:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-style:italic;
+      font-size:12px;
+      font-weight:700;
       color:#fff;
       z-index:2;
     }
-    .cardPhoto .row{display:flex; align-items:center; justify-content:space-between; gap:10px;}
-    .chip{
-      width:52px; height:40px; border-radius:10px;
-      background:
-        linear-gradient(135deg,#fde68a,#fbbf24 55%,#d97706);
-      border:1px solid rgba(255,255,255,.35);
-      box-shadow:0 10px 24px rgba(245,158,11,.22);
-      position:relative;
-      overflow:hidden;
+    @media (max-width: 500px){
+      .vcard{padding:22px}
+      .vcard-brand{font-size:20px}
+      .vcard-number{font-size:13px; letter-spacing:.9px}
+      .vcard-holder{font-size:9px; letter-spacing:.7px; max-width:58%}
+      .vcard-date-cvv b{font-size:10px}
+      .vcard-date-cvv{bottom:22px; gap:9px}
+      .vcard-network{width:72px; height:40px}
     }
-    .chip::before,
-    .chip::after{
-      content:"";
-      position:absolute;
-      background:rgba(120,53,15,.20);
-    }
-    .chip::before{inset:10px 0; height:1px}
-    .chip::after{inset:0 18px; width:1px}
-    .cardBank{
-      font-weight:950;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      font-size:13px;
-      opacity:.98;
-    }
-    .cardRegion{
-      font-size:11px;
-      opacity:.82;
-      margin-top:4px;
-    }
-    .cardNum{
-      letter-spacing:.18em;
-      font-family:var(--mono);
-      font-size:14px;
-      opacity:.98;
-      text-shadow:0 1px 0 rgba(255,255,255,.10);
-    }
-    .cardMeta{display:flex; align-items:flex-end; justify-content:space-between; gap:8px; margin-top:12px}
-    .cardExp{font-size:10px; opacity:.8; text-transform:uppercase; letter-spacing:.10em}
-    .cardExp b{display:block; margin-top:3px; font-size:12px; letter-spacing:.12em}
-    .cardName{ font-weight:950; letter-spacing:.08em; font-size:12px; opacity:.95; }
-    .Maestro{ font-weight:950; letter-spacing:.18em; opacity:.96; font-size:13px }
-    .glow{
-      position:absolute;
-      width:360px; height:360px;
-      border-radius:999px;
-      background:radial-gradient(circle at 30% 30%, rgba(31,58,147,.40), transparent 60%);
-      filter:blur(2px);
-      top:-180px; right:-140px;
-    }
-    .cardPhoto.virtual{
-      margin-top:10px;
-      min-height:210px;
-      background:
-        linear-gradient(145deg, #111827 0%, #1f2937 45%, #0f172a 100%);
-    }
-    .virtualTop{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .vBadge{
-      display:inline-flex;
-      align-items:center;
-      padding:4px 8px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.24);
-      background:rgba(255,255,255,.08);
-      font-size:10px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-weight:950;
-      color:#e5e7eb;
-    }
-    .eyeBtn{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      border:1px solid rgba(255,255,255,.28);
-      background:rgba(255,255,255,.10);
-      color:#fff;
-      border-radius:999px;
-      padding:5px 10px;
-      font-size:11px;
-      font-weight:950;
-      cursor:pointer;
-    }
-    .eyeBtn:hover{background:rgba(255,255,255,.18)}
-    .eyeBtn .ico{font-size:13px; line-height:1}
-    .cardData{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:10px;
-      font-size:11px;
-      color:rgba(255,255,255,.88);
-    }
-    .cardData b{display:block; margin-top:2px; font-size:12px; letter-spacing:.08em; color:#fff}
   </style>
 </head>
 
@@ -606,7 +665,7 @@
         <img class="logoImg" src="Lcl_logo.svg (2).png" alt="Logo banque">
         <div>
           <p class="title">LCL-BANQUE</p>
-          <div class="desc">France • Marseille</div>
+          <div class="desc">France • Biarritz</div>
         </div>
       </div>
 
@@ -646,7 +705,7 @@
           <img class="logoImg" src="Lcl_logo.svg (2).png" alt="Logo banque" >
           <div class="meta">
             <b>LCL-BANQUE</b>
-            <span>France • Marseille</span>
+            <span>France • Biarritz</span>
           </div>
         </a>
 
@@ -704,7 +763,7 @@
               <div class="hint">
                 <span id="labelAccount">Compte</span> : <span class="mono">.0500013M026</span> • IBAN : <span class="mono">FR14 2004 1010 0505 0001 3M02 606</span>
               </div>
-              <div class="hint"><span id="labelAgency">Agence</span> : <span class="mono">Marseille</span> • <span id="labelStatus">Statut</span> : <span class="badge ok" id="statusActive">Actif</span></div>
+              <div class="hint"><span id="labelAgency">Agence</span> : <span class="mono">Biarritz</span> • <span id="labelStatus">Statut</span> : <span class="badge ok" id="statusActive">Actif</span></div>
             </div>
 
             <div class="card span-5">
@@ -738,25 +797,33 @@
 
             <div class="card span-4">
               <div class="label" id="cardLabel1">Carte</div>
-              <div class="cardPhoto" style="margin-top:10px">
-                <div class="glow" aria-hidden="true"></div>
-                <div class="inner">
-                  <div class="row">
-                    <div>
-                      <div class="cardBank">LCL-BANQUE</div>
-                      <div class="cardRegion">FRANCE • MARSEILLE</div>
+              <div class="vcard-wrap">
+                <div class="vcard vcard-dashboard">
+                  <div class="vcard-brand">LCL BANQUE</div>
+                  <div class="vcard-top">
+                    <div class="vcard-chip"></div>
+                    <div class="vcard-contactless" aria-hidden="true">
+                      <span></span><span></span><span></span>
                     </div>
-                    <div class="chip"></div>
                   </div>
-                  <div>
-                    <div class="cardNum">5012 1565 6515 1253</div>
-                    <div class="cardMeta">
+                  <div class="vcard-number">5012 1565 6515 1253</div>
+                  <div class="vcard-bottom">
+                    <div class="vcard-date-cvv">
                       <div>
-                        <div class="cardExp">Valid Thru<b>01/28</b></div>
-                        <div class="cardName">Jean Frédéric Lienhart</div>
+                        <small>Valid Thru</small>
+                        <b>01/28</b>
                       </div>
-                      <div class="Maestro">Maestro</div>
+                      <div>
+                        <small>CVV</small>
+                        <b>427</b>
+                      </div>
                     </div>
+                    <div class="vcard-holder" id="cardHolderDash">JEAN FREDERIC LIENHART</div>
+                  </div>
+                  <div class="vcard-network" aria-hidden="true">
+                    <div class="vcard-circle-left"></div>
+                    <div class="vcard-circle-right"></div>
+                    <div class="vcard-network-text">Maestro</div>
                   </div>
                 </div>
               </div>
@@ -769,7 +836,7 @@
         <section id="view-history" class="hidden">
           <div>
             <h1 class="h1" id="historyTitle">Historique</h1>
-            <div class="sub" id="historySub">Transactions 2024–2025.</div>
+            <div class="sub" id="historySub">Transactions 2022–2022.</div>
           </div>
 
           <div class="section-title">
@@ -900,38 +967,33 @@
           <div class="grid">
             <div class="card span-6">
               <div class="label" id="mainCardLabel">Carte virtuelle</div>
-              <div class="cardPhoto virtual">
-                <div class="glow" aria-hidden="true"></div>
-                <div class="inner">
-                  <div class="virtualTop">
-                    <div>
-                      <div class="cardBank">LCL-BANQUE</div>
-                      <div class="cardRegion">VIRTUAL CARD</div>
-                    </div>
-                    <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
-                      <span class="vBadge">Virtual</span>
-                      <button class="eyeBtn" id="toggleCardDetailsBtn" type="button" aria-pressed="false">
-                        <span class="ico">👁</span>
-                        <span id="toggleCardDetailsText">Afficher coordonnées</span>
-                      </button>
+              <div class="vcard-wrap">
+                <div class="vcard vcard-large">
+                  <div class="vcard-brand">LCL BANQUE</div>
+                  <div class="vcard-top">
+                    <div class="vcard-chip"></div>
+                    <div class="vcard-contactless" aria-hidden="true">
+                      <span></span><span></span><span></span>
                     </div>
                   </div>
-                  <div>
-                    <div class="cardNum" id="cardNumberValue">5012 15•• •••• 1253</div>
-                    <div class="cardData">
+                  <div class="vcard-number" id="cardNumberValue">5012 1565 6515 1253</div>
+                  <div class="vcard-bottom">
+                    <div class="vcard-date-cvv">
                       <div>
-                        <span id="cardExpiryLabel">Expiration</span>
-                        <b id="cardExpValue">••/••</b>
+                        <small>Valid Thru</small>
+                        <b id="cardExpValue">01/28</b>
                       </div>
                       <div>
-                        <span id="cardCvvLabel">CVV</span>
-                        <b id="cardCvvValue">•••</b>
+                        <small>CVV</small>
+                        <b id="cardCvvValue">427</b>
                       </div>
                     </div>
-                    <div class="cardMeta">
-                      <div class="cardName">Jean Frédéric Lienhart</div>
-                      <div class="Maestro">Maestro</div>
-                    </div>
+                    <div class="vcard-holder" id="cardHolderMain">JEAN FREDERIC LIENHART</div>
+                  </div>
+                  <div class="vcard-network" aria-hidden="true">
+                    <div class="vcard-circle-left"></div>
+                    <div class="vcard-circle-right"></div>
+                    <div class="vcard-network-text">Maestro</div>
                   </div>
                 </div>
               </div>
@@ -964,15 +1026,15 @@ const CONFIG = {
 const state = {
   available: CONFIG.available,
   ops: [
-    { date:"2025-12-12", label:"Virement • Remboursement", type:"transfer", ref:"VIR-20251212-88219", status:"done", amount:+1200.00 },
-    { date:"2025-11-03", label:"Achat carte • Hôtel Marseille", type:"card", ref:"CB-20251103-41002", status:"done", amount:-289.90 },
-    { date:"2025-10-18", label:"Paiement facture • Internet", type:"bill", ref:"FAC-20251018-77110", status:"done", amount:-49.99 },
-    { date:"2025-08-27", label:"Achat carte • Supermarché", type:"card", ref:"CB-20250827-19332", status:"done", amount:-86.45 },
-    { date:"2025-02-06", label:"Virement • Épargne", type:"transfer", ref:"VIR-20250206-55001", status:"done", amount:-500.00 },
-    { date:"2024-12-21", label:"Paiement facture • Électricité", type:"bill", ref:"FAC-20241221-22009", status:"done", amount:-112.30 },
-    { date:"2024-09-14", label:"Achat carte • Transport", type:"card", ref:"CB-20240914-90411", status:"done", amount:-42.10 },
-    { date:"2024-06-02", label:"Virement reçu • Prestation", type:"transfer", ref:"VIR-20240602-33008", status:"done", amount:+950.00 },
-    { date:"2024-02-19", label:"Paiement facture • Assurance", type:"bill", ref:"FAC-20240219-10007", status:"done", amount:-78.60 }
+    { date:"2022-12-12", label:"Virement • Remboursement", type:"transfer", ref:"VIR-20221212-88219", status:"done", amount:+1200.00 },
+    { date:"2022-11-03", label:"Achat carte • Hôtel Biarritz", type:"card", ref:"CB-20221103-41002", status:"done", amount:-289.90 },
+    { date:"2022-10-18", label:"Paiement facture • Internet", type:"bill", ref:"FAC-20221018-77110", status:"done", amount:-49.99 },
+    { date:"2022-08-27", label:"Achat carte • Supermarché", type:"card", ref:"CB-20220827-19332", status:"done", amount:-86.45 },
+    { date:"2022-02-06", label:"Virement • Épargne", type:"transfer", ref:"VIR-20220206-55001", status:"done", amount:-500.00 },
+    { date:"2022-01-03", label:"Paiement facture • Électricité", type:"bill", ref:"FAC-20221221-22009", status:"done", amount:-112.30 },
+    { date:"2022-09-14", label:"Achat carte • Transport", type:"card", ref:"CB-20220914-90411", status:"done", amount:-42.10 },
+    { date:"2022-06-02", label:"Virement reçu • Prestation", type:"transfer", ref:"VIR-20220602-33008", status:"done", amount:+950.00 },
+    { date:"2022-02-19", label:"Paiement facture • Assurance", type:"bill", ref:"FAC-20220219-10007", status:"done", amount:-78.60 }
   ]
 };
 
@@ -1013,7 +1075,7 @@ const I18N = {
     cardLabel1: "Card",
     cardVisualNote: "Stylized card preview.",
     historyTitle: "History",
-    historySub: "Transactions 2024–2025.",
+    historySub: "Transactions 2022–2022.",
     filtersTitle: "Filters",
     historyTypeAll: "All types",
     historyTypeCard: "Card",
@@ -1116,7 +1178,7 @@ const I18N = {
     cardLabel1: "Tarjeta",
     cardVisualNote: "Vista estilizada de la tarjeta.",
     historyTitle: "Historial",
-    historySub: "Transacciones 2024–2025.",
+    historySub: "Transacciones 2022–2022.",
     filtersTitle: "Filtros",
     historyTypeAll: "Todos los tipos",
     historyTypeCard: "Tarjeta",
@@ -1160,8 +1222,8 @@ const I18N = {
     cardExpiryLabel: "Expiración",
     cardCvvLabel: "CVV",
     limitsLabel: "Límites",
-    paymentsLimit: "Pagos: 5.000 € / semana",
-    withdrawalsLimit: "Retiros: 1.500 € / semana",
+    paymentsLimit: "Pagos: 50.000 € / semana",
+    withdrawalsLimit: "Retiros: 50.000 € / semana",
     historySearchPlaceholder: "Buscar: concepto, ref...",
     globalSearchPlaceholder: "Buscar (transacciones, referencia...)",
     senderGmailPlaceholder: "ej.: alex.dubois@gmail.com",
@@ -1219,7 +1281,7 @@ const I18N = {
     cardLabel1: "Carte",
     cardVisualNote: "Visuel carte stylisé.",
     historyTitle: "Historique",
-    historySub: "Transactions 2024–2025.",
+    historySub: "Transactions 2022–2022.",
     filtersTitle: "Filtres",
     historyTypeAll: "Tous types",
     historyTypeCard: "Carte",
@@ -1263,8 +1325,8 @@ const I18N = {
     cardExpiryLabel: "Expiration",
     cardCvvLabel: "CVV",
     limitsLabel: "Plafonds",
-    paymentsLimit: "Paiements : 5 000 € / semaine",
-    withdrawalsLimit: "Retraits : 1 500 € / semaine",
+    paymentsLimit: "Paiements : 50 000 € / semaine",
+    withdrawalsLimit: "Retraits : 50 000 € / semaine",
     historySearchPlaceholder: "Rechercher : libellé, ref...",
     globalSearchPlaceholder: "Rechercher (transactions, référence...)",
     senderGmailPlaceholder: "ex: alex.dubois@gmail.com",
@@ -1483,14 +1545,23 @@ const languageSelectDash = document.getElementById("languageSelectDash");
 const toggleCardDetailsBtn = document.getElementById("toggleCardDetailsBtn");
 
 const virtualCardData = {
-  numberHidden: "5012 15•• •••• 1253",
+  numberHidden: "5012 1565 6515 1253",
   numberShown: "5012 1565 6515 1253",
-  expHidden: "••/••",
+  expHidden: "01/28",
   expShown: "01/28",
-  cvvHidden: "•••",
+  cvvHidden: "427",
   cvvShown: "427"
 };
 let cardDetailsVisible = false;
+
+function renderCardHolder(){
+  const cardHolderValue = CONFIG.customerName.toUpperCase();
+  const cardHolderDash = document.getElementById("cardHolderDash");
+  const cardHolderMain = document.getElementById("cardHolderMain");
+
+  if(cardHolderDash) cardHolderDash.textContent = cardHolderValue;
+  if(cardHolderMain) cardHolderMain.textContent = cardHolderValue;
+}
 
 function renderCardDetails(){
   const numberEl = document.getElementById("cardNumberValue");
@@ -1530,6 +1601,7 @@ if(supportBtn){
 }
 
 setLanguage(languageSelectLogin ? languageSelectLogin.value : "en");
+renderCardHolder();
 
 function goTo(view){
   viewIds.forEach(v=>{
@@ -1695,6 +1767,5 @@ function copyReceipt(){
 </body>
 
 </html>
-
 
 
